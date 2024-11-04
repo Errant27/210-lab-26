@@ -54,26 +54,26 @@ int main() {
             reader.close();    // file closed
         }
         
-        // testing for SORT operations
-        for (int i = 0; i < STRUCTURES; i++) {
+        // SORT tests
+        for (int j = 0; j < STRUCTURES; j++) {    // same logic as read race, loop runs for each of each of the strcutures
             auto start = chrono::high_resolution_clock::now();
-            switch(i) {
-                case 0: {  // sort a vector
+            switch(j) {
+                case 0: {  // first iteration, vector sorted
                     sort(data_vector.begin(), data_vector.end());
                     auto end = chrono::high_resolution_clock::now();
                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
-                    results[1][i] = duration.count();
+                    results[1][j][f] = duration.count();
                     break;
                 }
-                case 1: {  // sort a list
+                case 1: {  // second iteration, list sorted
                     data_list.sort();
                     auto end = chrono::high_resolution_clock::now();
                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
-                    results[1][i] = duration.count();
+                    results[1][j][f] = duration.count();
                     break;
                 }
-                case 2: {  // can't sort a set, so set to -1
-                    results[1][i] = -1;
+                case 2: {  // third iteration, set not needed to be sotred, -1 stored
+                    results[1][j][f] = -1;
                     break;
                 }
             }
