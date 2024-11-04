@@ -79,33 +79,33 @@ int main() {
             }
         }
         
-        // testing for INSERT operations
-        for (int i = 0; i < STRUCTURES; i++) {
-            int ind_v = data_vector.size() / 2;
-            int ind_l = data_list.size() / 2;
+        // INSERT tests
+        for (int j = 0; j < STRUCTURES; j++) {    // same logic as read race, loop runs for each of each of the strcutures
+            double ind_v = data_vector.size() / 2;    // iterators for vector and list initialized
+            double ind_l = data_list.size() / 2;
             auto start = chrono::high_resolution_clock::now();
-            switch(i) {
-                case 0: {  // insert into a vector
+            switch(j) {
+                case 0: {    // first iteration, vector insert test
                     data_vector.insert(data_vector.begin() + ind_v, "TESTCODE");
                     auto end = chrono::high_resolution_clock::now();
                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
-                    results[2][i] = duration.count();
+                    results[2][j][f] = duration.count();
                     break;
                 }
-                case 1: {  // insert into a list
+                case 1: {    // second iteration, list insert test
                     auto it = data_list.begin();
                     advance(it, ind_l);
                     data_list.insert(it, "TESTCODE");
                     auto end = chrono::high_resolution_clock::now();
                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
-                    results[2][i] = duration.count();
+                    results[2][j][f] = duration.count();
                     break;
                 }
-                case 2: {  // insert into a set
+                case 2: {    // third iteration, set insert test
                     data_set.insert("TESTCODE");
                     auto end = chrono::high_resolution_clock::now();
                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
-                    results[2][i] = duration.count();
+                    results[2][j][f] = duration.count();
                     break;
                 }
             }
